@@ -1,7 +1,10 @@
+import React from "react";
 import "./Card.css";
 function Card(props) {
-	const onClickButton = () => {
-		console.log("Clicked!");
+	const [isAdded, setIsAdded] = React.useState(false);
+
+	const onClickPlus = () => {
+		setIsAdded(true);
 	};
 
 	return (
@@ -20,9 +23,12 @@ function Card(props) {
 					<span>Цена:</span>
 					<b>{props.price}</b>
 				</div>
-				<button className="button" onClick={onClickButton()}>
-					<img className="card-plus-icon" src="/img/plus-icon.svg" alt="plus" />
-				</button>
+				<img
+					onClick={onClickPlus}
+					className="card-plus-icon"
+					src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+					alt="plus"
+				/>
 			</div>
 		</div>
 	);
