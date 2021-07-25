@@ -4,8 +4,12 @@ import Drawer from "./components/Drawer";
 import Header from "./components/Header";
 
 function App() {
-	const [items, setItems] = React.useState([]);
+	let [items, setItems] = React.useState([]);
 	const [cartOpened, setCardOpened] = React.useState(false);
+
+	fetch("https://60fbf29091156a0017b4c950.mockapi.io/items")
+		.then((response) => response.json())
+		.then((json) => setItems(json));
 
 	return (
 		<div className="wrapper clear">
