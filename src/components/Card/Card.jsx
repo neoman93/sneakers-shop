@@ -1,27 +1,28 @@
 import React from "react";
 import "./Card.css";
-function Card(props) {
+function Card({ title, price, imgUrl, onFavorite, onPlus }) {
 	const [isAdded, setIsAdded] = React.useState(false);
 
 	const onClickPlus = () => {
+		onPlus({ title, price, imgUrl });
 		setIsAdded(true);
 	};
 
 	return (
 		<div className="card">
-			<div className="favorite">
+			<div className="favorite" onClick={onFavorite}>
 				<img
 					className="card-unlike-icon"
 					src="/img/heart-unliked.svg"
 					alt="Add to Favotite"
 				/>
 			</div>
-			<img className="card-img" src={props.imgUrl} alt="Sneakers" />
-			<h5 className="mb-40">{props.title}</h5>
+			<img className="card-img" src={imgUrl} alt="Sneakers" />
+			<h5 className="mb-40">{title}</h5>
 			<div className="d-flex justify-between align-center">
 				<div className="d-flex flex-column">
 					<span>Цена:</span>
-					<b>{props.price}</b>
+					<b>{price}</b>
 				</div>
 				<img
 					onClick={onClickPlus}

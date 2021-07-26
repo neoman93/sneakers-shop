@@ -5,15 +5,28 @@ import Header from "./components/Header";
 
 function App() {
 	let [items, setItems] = React.useState([]);
+	let [cartItems, setCartItems] = React.useState([]);
 	const [cartOpened, setCardOpened] = React.useState(false);
 
-	fetch("https://60fbf29091156a0017b4c950.mockapi.io/items")
-		.then((response) => response.json())
-		.then((json) => setItems(json));
+	React.useEffect(() => {
+		fetch("https://60fbf29091156a0017b4c950.mockapi.io/items")
+			.then((res) => {
+				return res.json();
+			})
+			.then((json) => {
+				setItems(json);
+			});
+	}, []);
+
+	const onAddtoCart = (obj) => {
+		setCartItems((prev) => [...prev, obj]);
+	};
 
 	return (
 		<div className="wrapper clear">
-			{cartOpened ? <Drawer onClose={() => setCardOpened(false)} /> : null}
+			{cartOpened ? (
+				<Drawer items={cartItems} onClose={() => setCardOpened(false)} />
+			) : null}
 			<Header onClickCart={() => setCardOpened(true)} />
 
 			<div className="content p-40">
@@ -30,7 +43,8 @@ function App() {
 							title={obj.title}
 							price={obj.price}
 							imgUrl={obj.imgUrl}
-							onClick={() => console.log("hello")}
+							onFavorite={() => console.log("added to bookmarks")}
+							onPlus={(obj) => onAddtoCart(obj)}
 						/>
 					))}
 				</div>
