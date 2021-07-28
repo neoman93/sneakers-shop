@@ -14,18 +14,18 @@ function App() {
 		axios.get("https://60fbf29091156a0017b4c950.mockapi.io/items").then((res) => {
 			setItems(res.data);
 		});
-		axios.get("https://60fbf29091156a0017b4c950.mockapi.io/items").then((res) => {
+		axios.get("https://60fbf29091156a0017b4c950.mockapi.io/cart").then((res) => {
 			setCartItems(res.data);
 		});
 	}, []);
 
 	const onAddtoCart = (obj) => {
-		axios.get("https://60fbf29091156a0017b4c950.mockapi.io/items", obj);
+		axios.post("https://60fbf29091156a0017b4c950.mockapi.io/cart", obj);
 		setCartItems((prev) => [...prev, obj]);
 	};
 
 	const onRemoveFromCart = (id) => {
-		// axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/i${id}`);
+		axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/cart/${id}`);
 		setCartItems((prev) => prev.filter((item) => item.id !== id));
 	};
 
