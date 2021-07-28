@@ -2,18 +2,24 @@ import React from "react";
 import "./Card.css";
 function Card({ title, price, imgUrl, onFavorite, onPlus }) {
 	const [isAdded, setIsAdded] = React.useState(false);
+	const [isFavorite, setisFaforite] = React.useState(false);
 
 	const onClickPlus = () => {
 		onPlus({ title, price, imgUrl });
 		setIsAdded(true);
 	};
 
+	const onClickFavorite = () => {
+		setisFaforite(!isFavorite);
+	};
+
 	return (
 		<div className="card">
-			<div className="favorite" onClick={onFavorite}>
+			<div className="favorite" onClick={onClickFavorite}>
 				<img
+					onClick={setisFaforite}
 					className="card-unlike-icon"
-					src="/img/heart-unliked.svg"
+					src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"}
 					alt="Add to Favotite"
 				/>
 			</div>
