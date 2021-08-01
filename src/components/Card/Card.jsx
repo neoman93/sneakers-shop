@@ -1,16 +1,25 @@
 import React from "react";
 import "./Card.css";
-function Card({ title, price, imgUrl, onFavorite, onPlus }) {
-	const [isAdded, setIsAdded] = React.useState(false);
-	const [isFavorite, setisFaforite] = React.useState(false);
+function Card({
+	id,
+	title,
+	price,
+	imgUrl,
+	onFavorite,
+	onPlus,
+	favorited = false,
+	added = false,
+}) {
+	const [isAdded, setIsAdded] = React.useState(added);
+	const [isFavorite, setisFaforite] = React.useState(favorited);
 
 	const onClickPlus = () => {
-		onPlus({ title, price, imgUrl });
+		onPlus({ id, title, price, imgUrl });
 		setIsAdded(true);
 	};
 
 	const onClickFavorite = () => {
-		onFavorite({ title, price, imgUrl });
+		onFavorite({ id, title, price, imgUrl });
 		setisFaforite(!isFavorite);
 	};
 
