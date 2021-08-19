@@ -15,4 +15,3 @@ export const Info = ({ image, title, description }) => {
 		</div>
 	);
 };
-//Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
