@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "../components/Card";
 function Home({
+	items,
 	searchValue,
 	setSearchValue,
 	onChangeSearchInput,
-	items,
 	onAddToFavorite,
 	onAddtoCart,
 	isLoading,

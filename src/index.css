@@ -202,6 +202,13 @@ header p {
           transform: translateX(5px);
 }
 
+.drawer .cart-total-block .btn-checkout:disabled {
+  background-color: #bebebe;
+  cursor: default;
+  -webkit-animation: button-loading 0.6s ease-in-out infinite;
+          animation: button-loading 0.6s ease-in-out infinite;
+}
+
 .drawer .cart-total-block .btn-checkout img {
   position: absolute;
   right: 30px;
@@ -259,5 +266,29 @@ header p {
 
 .drawer .cart-item .cart-remove-icon:hover {
   opacity: 1;
+}
+
+@-webkit-keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=index.css.map */
