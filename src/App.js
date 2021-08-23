@@ -7,6 +7,7 @@ import AppContext from "./Context";
 
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 
 function App() {
 	const [items, setItems] = React.useState([]);
@@ -112,6 +113,10 @@ function App() {
 				</Route>
 				<Route path="/favorites" exact>
 					<Favorites />
+				</Route>
+
+				<Route path="/orders" exact>
+					<Orders />
 				</Route>
 			</div>
 		</AppContext.Provider>
