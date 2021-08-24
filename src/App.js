@@ -85,6 +85,7 @@ function App() {
 				favorites,
 				isItemAdded,
 				onAddToFavorite,
+				onAddtoCart,
 				setCartOpened,
 				setCartItems,
 			}}
