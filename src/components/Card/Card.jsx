@@ -45,14 +45,16 @@ function Card({
 				</ContentLoader>
 			) : (
 				<React.Fragment>
-					<div className="favorite" onClick={onClickFavorite}>
-						<img
-							onClick={setIsFaforite}
-							className="card-unlike-icon"
-							src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"}
-							alt="Add to Favotite"
-						/>
-					</div>
+					{onFavorite && (
+						<div className="favorite" onClick={onClickFavorite}>
+							<img
+								onClick={setIsFaforite}
+								className="card-unlike-icon"
+								src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"}
+								alt="Add to Favotite"
+							/>
+						</div>
+					)}
 					<img className="card-img" src={imgUrl} alt="Sneakers" />
 					<h5 className="mb-40">{title}</h5>
 					<div className="d-flex justify-between align-center">
@@ -60,12 +62,14 @@ function Card({
 							<span>Цена:</span>
 							<b>{price}</b>
 						</div>
-						<img
-							onClick={onClickPlus}
-							className="card-plus-icon"
-							src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
-							alt="plus"
-						/>
+						{onPlus && (
+							<img
+								onClick={onClickPlus}
+								className="card-plus-icon"
+								src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+								alt="plus"
+							/>
+						)}
 					</div>
 				</React.Fragment>
 			)}
