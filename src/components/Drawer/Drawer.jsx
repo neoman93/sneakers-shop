@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useCart } from "../../hooks/useCart";
 import Info from "../Info";
-import './Drawer.css';
+import "./Drawer.css";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -38,7 +38,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
 	};
 
 	return (
-		<div className={`overlay ${opened ? :}`}>
+		<div className={`overlay ${opened ? "overlay-visible" : ""}`}>
 			<div className="drawer">
 				<h2 className="mb-30 d-flex justify-between">
 					Корзина
