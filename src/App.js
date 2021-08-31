@@ -45,12 +45,13 @@ function App() {
 
 	const onAddtoCart = async (obj) => {
 		try {
-			if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-				axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/cart/${obj.id}`);
+			const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
+			if (findItem) {
 				setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+				axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/cart/${findItem.id}`);
 			} else {
-				axios.post("https://60fbf29091156a0017b4c950.mockapi.io/cart/", obj);
 				setCartItems((prev) => [...prev, obj]);
+				axios.post("https://60fbf29091156a0017b4c950.mockapi.io/cart/", obj);
 			}
 		} catch (error) {
 			alert("Error on add to cart", error);
@@ -60,7 +61,7 @@ function App() {
 	const onRemoveFromCart = async (id) => {
 		try {
 			axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/cart/${id}`);
-			setCartItems((prev) => prev.filter((item) => item.id !== id));
+			setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
 		} catch (error) {
 			alert("Error on remove from cart", error);
 		}
