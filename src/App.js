@@ -141,11 +141,11 @@ function App() {
 						isLoading={isLoading}
 					/>
 				</Route>
-				<Route path="/favorites" exact>
+				<Route path="favorites" exact>
 					<Favorites />
 				</Route>
 
-				<Route path="/orders" exact>
+				<Route path="orders" exact>
 					<Orders />
 				</Route>
 			</div>
