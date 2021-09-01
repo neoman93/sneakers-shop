@@ -48,10 +48,26 @@ function App() {
 			const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
 			if (findItem) {
 				setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-				axios.delete(`https://60fbf29091156a0017b4c950.mockapi.io/cart/${findItem.id}`);
+				await axios.delete(
+					`https://60fbf29091156a0017b4c950.mockapi.io/cart/${findItem.id}`
+				);
 			} else {
 				setCartItems((prev) => [...prev, obj]);
-				axios.post("https://60fbf29091156a0017b4c950.mockapi.io/cart/", obj);
+				const { data } = await axios.post(
+					"https://60fbf29091156a0017b4c950.mockapi.io/cart/",
+					obj
+				);
+				setCartItems((prev) =>
+					prev.map((item) => {
+						if (item.parentId === data.parentId) {
+							return {
+								...item,
+								id: data.id,
+							};
+						}
+						return item;
+					})
+				);
 			}
 		} catch (error) {
 			alert("Error on add to cart", error);
